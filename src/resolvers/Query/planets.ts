@@ -1,5 +1,3 @@
-import { valueFromAST } from 'graphql'
-
 export default {
   suitablePlanets: async (_source, { page }, { dataSources, prisma }) => {
     let data = []
