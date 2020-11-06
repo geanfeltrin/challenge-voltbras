@@ -14,8 +14,15 @@ const typeDefs = gql`
     mass: Float
   }
 
+  type Station {
+    id: Int
+    namePlanet: String!
+    nameStation: String!
+    mass: Float
+  }
+
   type Mutation {
-    installStation(data: installStation!): Planet
+    installStation(data: installStation!): Station
   }
 
   type Query {
