@@ -1,9 +1,14 @@
+import { Context } from '../../context/index'
 type DataProps = {
-  data: { nameStation: String; namePlanet: String; mass: Number }
+  data: {
+    nameStation: string
+    namePlanet: string
+    mass: number
+  }
 }
 
 export default {
-  installStation: async (_source: any, { data }: DataProps, context: any) => {
+  installStation: async (_: unknown, { data }: DataProps, context: Context) => {
     const response = await context.prisma.station.create({
       data: {
         name_station: data.nameStation,

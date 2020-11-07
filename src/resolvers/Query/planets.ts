@@ -1,13 +1,17 @@
-import { PrismaClient } from '@prisma/client'
+import { Context } from '../../context/index'
+
+type contextProps = { dataSources: any; context: Context }
+type argsProps = { page: Number }
+
 export default {
   suitablePlanets: async (
-    _source: unknown,
-    { page }: { page: Number },
-    { dataSources, prisma }: { dataSources: any; prisma: PrismaClient },
+    _: unknown,
+    args: argsProps,
+    { dataSources, context }: contextProps,
   ) => {
     let data = []
     const arrayPage = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
+    const { page } = args
     try {
       if (page) {
         const dataWithPage = await dataSources.planetsApi.getPlanets(page)
@@ -29,7 +33,7 @@ export default {
           hasStation: false,
         }))
 
-      const dataStation = await prisma.station.findMany()
+      const dataStation = await context.prisma.station.findMany()
 
       if (dataStation) {
         for (let stations of dataStation) {
