@@ -1,5 +1,5 @@
-import planets from './planets'
+import planets from './planets';
 
 export default {
   ...planets,
-}
+};

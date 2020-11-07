@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server'
+import { gql } from 'apollo-server';
 
 const typeDefs = gql`
   type Planet {
@@ -28,6 +28,6 @@ const typeDefs = gql`
   type Query {
     suitablePlanets(page: Int): [Planet]
   }
-`
+`;
 
-export default typeDefs
+export default typeDefs;
