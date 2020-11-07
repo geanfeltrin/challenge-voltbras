@@ -8,6 +8,8 @@ services:
       - .:/app
     depends_on:
       - postgres-db
+    links:
+      - postgres-db
     networks:
       - app-connect
     ports:
@@ -26,7 +28,7 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
     ports:
-      - ${DB_PORT}:5432
+      - ${DB_PORT}:${DB_PORT}
     networks:
       - app-connect
 

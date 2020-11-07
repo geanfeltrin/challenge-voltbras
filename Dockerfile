@@ -7,7 +7,10 @@ WORKDIR /app
 # Install app dependencies
 COPY package.json /app
 COPY yarn.lock /app
+COPY prisma /app
 RUN yarn
+
+RUN yarn generate
 
 # Bundle app source
 COPY . /app
