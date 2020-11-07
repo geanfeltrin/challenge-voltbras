@@ -1,19 +1,22 @@
-import { ApolloServer } from 'apollo-server'
+import * as dotenv from 'dotenv';
+import { ApolloServer } from 'apollo-server';
 
-import resolvers from './resolvers'
-import { createContext } from './context'
-import PlanetAPI from './api/planetApi'
-import typeDefs from './schema/index'
+import resolvers from './resolvers';
+import typeDefs from './schema/index';
+import PlanetAPI from './api/planetApi';
 
-new ApolloServer({
+dotenv.config();
+
+const app = new ApolloServer({
   typeDefs,
   resolvers,
-  context: createContext,
   dataSources: () => {
     return {
-      planetsApi: new PlanetAPI(),
-    }
+      planetAPI: new PlanetAPI(),
+    };
   },
-}).listen({ port: 4000 }, () =>
+});
+
+app.listen({ port: 4000 }, () =>
   console.log(`Server ready at: http://localhost:4000`),
-)
+);
