@@ -8,11 +8,14 @@
   "scripts": {
     "start": "node dist/server",
     "clean": "rm -rf dist",
-    "build": "npm -s run clean && npm -s run && tsc",
+    "build": "npm -s run generate && tsc --skipLibCheck",
+    "crete:db": "prisma migrate save --create-db --experimental",
     "migrate:save": "prisma migrate save --experimental",
     "migrate:up": "prisma migrate up --experimental",
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./src/server.ts",
-    "dev:server": "ts-node-dev --inspect --ignore-watch node_modules src/server.ts"
+    "migrate:down": "prisma migrate down --experimental",
+    "generate": "npm -s run generate:prisma",
+    "generate:prisma": "prisma generate",
+    "dev": "ts-node-dev --inspect --ignore-watch node_modules src/server.ts"
   },
   "dependencies": {
     "@prisma/client": "^2.10.2",
