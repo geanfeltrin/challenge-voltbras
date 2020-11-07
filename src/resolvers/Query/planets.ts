@@ -1,5 +1,10 @@
+import { PrismaClient } from '@prisma/client'
 export default {
-  suitablePlanets: async (_source, { page }, { dataSources, prisma }) => {
+  suitablePlanets: async (
+    _source: unknown,
+    { page }: { page: Number },
+    { dataSources, prisma }: { dataSources: any; prisma: PrismaClient },
+  ) => {
     let data = []
     const arrayPage = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
