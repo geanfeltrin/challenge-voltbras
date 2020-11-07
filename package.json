@@ -9,7 +9,7 @@
     "start": "node dist/server",
     "clean": "rm -rf dist",
     "build": "npm -s run generate && tsc --skipLibCheck",
-    "crete:db": "prisma migrate save --create-db --experimental",
+    "create:db": "prisma migrate save --create-db --experimental",
     "migrate:save": "prisma migrate save --experimental",
     "migrate:up": "prisma migrate up --experimental",
     "migrate:down": "prisma migrate down --experimental",
@@ -21,6 +21,7 @@
     "@prisma/client": "^2.10.2",
     "apollo-datasource-rest": "^0.9.5",
     "apollo-server": "^2.19.0",
+    "dotenv": "^8.2.0",
     "graphql": "^15.4.0"
   },
   "devDependencies": {

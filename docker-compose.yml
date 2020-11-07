@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  nodejs-app:
+    container_name: nodejs-app
+    build: '.'
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres-db
+    networks:
+      - app-connect
+    ports:
+      - '4000:4000'
+    environment:
+      - NODE_ENV=development
+
+  postgres-db:
+    container_name: postgres-db
+    image: postgres
+    restart: unless-stopped
+    volumes:
+      - postgres-db-data:/data
+    environment:
+      POSTGRES_DB: "challenge_voltbras"
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    ports:
+      - ${DB_PORT}:5432
+    networks:
+      - app-connect
+
+volumes:
+  postgres-db-data:
+
+networks:
+  app-connect:
+      driver: bridge
