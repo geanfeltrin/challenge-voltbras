@@ -1,5 +1,5 @@
-import installStation from './installStation'
+import installStation from './station';
 
 export default {
   ...installStation,
-}
+};
