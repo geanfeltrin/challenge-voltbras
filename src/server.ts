@@ -1,13 +1,13 @@
-import * as dotenv from 'dotenv';
+import { config } from 'dotenv';
+config();
 import { ApolloServer } from 'apollo-server';
 
 import resolvers from './resolvers';
 import typeDefs from './schema/index';
 import PlanetAPI from './api/planetApi';
+import { createContext } from './context/db';
 
-dotenv.config();
-
-const app = new ApolloServer({
+export const server = new ApolloServer({
   typeDefs,
   resolvers,
   dataSources: () => {
@@ -15,8 +15,9 @@ const app = new ApolloServer({
       planetAPI: new PlanetAPI(),
     };
   },
+  context: createContext,
 });
 
-app.listen({ port: 4000 }, () =>
-  console.log(`Server ready at: http://localhost:4000`),
-);
+server.listen().then(({ url }) => {
+  console.log(`Server ready at: ${url}`);
+});
