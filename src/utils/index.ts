@@ -1,4 +1,4 @@
-import { removeDuplicates } from './removeDuplicates';
+import { removeDuplicatesArrayOfObj } from './removeDuplicates';
 import { sortElements } from './sortElements';
 
-export { removeDuplicates, sortElements };
+export { removeDuplicatesArrayOfObj, sortElements };

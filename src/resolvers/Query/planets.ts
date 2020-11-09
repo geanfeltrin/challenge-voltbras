@@ -1,6 +1,6 @@
 import { Context } from '../../context/db';
 import PlanetAPI from '../../api/planetApi';
-import { removeDuplicates, sortElements } from '../../utils';
+import { removeDuplicatesArrayOfObj, sortElements } from '../../utils';
 
 type argsProps = { page: number };
 
@@ -62,9 +62,13 @@ export default {
           ...formatDataStation,
         ];
 
-        const organizeElements = sortElements(formatHasStation, 'hasStation');
+        const organizeElements = sortElements(
+          formatHasStation,
+          'hasStation',
+          'asc',
+        );
 
-        const result = removeDuplicates(organizeElements, 'name');
+        const result = removeDuplicatesArrayOfObj(organizeElements, 'name');
 
         return result;
       } else {
