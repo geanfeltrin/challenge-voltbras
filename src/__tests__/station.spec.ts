@@ -28,7 +28,4 @@ describe('Mutation-Station', () => {
 
     expect(response).toEqual({ ...data, id: 5 });
   });
-
-  it('should return error if data was incorrect', async () => {});
-  it('should return error if station already been registred', async () => {});
 });
