@@ -42,14 +42,8 @@ export default {
 
       const dataStation = await db.station.findMany();
 
-      if (dataStation) {
-        const formatDataStation = dataStation.map(value => ({
-          name: value.name_planet,
-          mass: value.mass,
-          hasStation: true,
-        }));
-
-        for (let station of formatDataStation) {
+      if (dataStation.length >= 1) {
+        for (let station of dataStation) {
           for (let isPossibleToInstallStation of filterIsPossibleToInstallStation) {
             if (station.name === isPossibleToInstallStation.name) {
               isPossibleToInstallStation.hasStation = true;
@@ -59,7 +53,7 @@ export default {
 
         const formatHasStation = [
           ...filterIsPossibleToInstallStation,
-          ...formatDataStation,
+          ...dataStation,
         ];
 
         const organizeElements = sortElements(

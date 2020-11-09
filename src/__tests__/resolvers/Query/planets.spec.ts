@@ -27,9 +27,7 @@ describe('Query-Planets', () => {
       mockCtx.db.station.findMany.mockResolvedValue([
         {
           id: 5,
-          name_planet: '11 Com b',
-          name_station: 'teste',
-          mass: 27,
+          name: '11 Com b',
         },
       ]);
 
@@ -55,9 +53,7 @@ describe('Query-Planets', () => {
       mockCtx.db.station.findMany.mockResolvedValue([
         {
           id: 5,
-          name_planet: '11 Com b',
-          name_station: 'teste',
-          mass: 27,
+          name: '11 Com b',
         },
       ]);
 
@@ -82,9 +78,7 @@ describe('Query-Planets', () => {
       mockCtx.db.station.findMany.mockResolvedValue([
         {
           id: 5,
-          name_planet: '11 Com b',
-          name_station: 'teste',
-          mass: 27,
+          name: '11 Com b',
         },
       ]);
 
