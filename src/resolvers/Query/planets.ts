@@ -1,5 +1,6 @@
 import { Context } from '../../context/db';
 import PlanetAPI from '../../api/planetApi';
+import { removeDuplicates, sortElements } from '../../utils';
 
 type argsProps = { page: number };
 
@@ -56,14 +57,14 @@ export default {
           }
         }
 
-        const formatHasStation = Object.assign(
-          filterIsPossibleToInstallStation,
-          formatDataStation,
-        );
+        const formatHasStation = [
+          ...filterIsPossibleToInstallStation,
+          ...formatDataStation,
+        ];
 
-        const result = formatHasStation.sort(
-          (a, b) => Number(b.hasStation) - Number(a.hasStation),
-        );
+        const organizeElements = sortElements(formatHasStation, 'hasStation');
+
+        const result = removeDuplicates(organizeElements, 'name');
 
         return result;
       } else {
