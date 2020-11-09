@@ -7,6 +7,11 @@ export default class PlanetAPI extends RESTDataSource {
   }
 
   async getPlanets(page: number) {
-    return this.get(`exoplanets/?page=${page}`);
+    try {
+      const response = this.get(`exoplanets/?page=${page}`);
+      return response;
+    } catch (error) {
+      throw new Error('Could not possible to find api data.');
+    }
   }
 }
