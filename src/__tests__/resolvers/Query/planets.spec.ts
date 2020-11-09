@@ -1,12 +1,11 @@
-import planets from '../resolvers/Query/planets';
-import { createMockContext, MockContext } from './mockContext';
+import planets from '../../../resolvers/Query/planets';
+import { createMockContext, MockContext } from '../../mockContext';
 
-import { response } from './mocks/mockDataPlanetAPI';
-import { PrismaClient } from '@prisma/client';
-import PlanetAPI from '../api/planetApi';
-import { ContextProps } from '../resolvers/Query/planets';
+import { response } from '../../mocks/mockDataPlanetAPI';
+import PlanetAPI from '../../../api/planetApi';
+import { ContextProps } from '../../../resolvers/Query/planets';
 import { MockProxy, mock } from 'jest-mock-extended';
-import { Context } from '../context/db';
+import { Context } from '../../../context/db';
 
 describe('Query-Planets', () => {
   describe('Suitable-Planets', () => {

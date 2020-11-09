@@ -1,6 +1,6 @@
-import station from '../resolvers/Mutation/station';
-import { createMockContext, MockContext } from './mockContext';
-import { Context } from '../context/db';
+import station from '../../../resolvers/Mutation/station';
+import { createMockContext, MockContext } from '../../mockContext';
+import { Context } from '../../../context/db';
 
 describe('Mutation-Station', () => {
   let mockCtx: MockContext;
