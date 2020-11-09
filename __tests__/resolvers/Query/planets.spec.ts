@@ -1,11 +1,11 @@
-import planets from '../../../resolvers/Query/planets';
+import planets from '../../../src/resolvers/Query/planets';
 import { createMockContext, MockContext } from '../../mocks/mockContext';
 
 import { response } from '../../mocks/mockDataPlanetAPI';
-import PlanetAPI from '../../../api/planetApi';
-import { ContextProps } from '../../../resolvers/Query/planets';
+import PlanetAPI from '../../../src/api/planetApi';
+import { ContextProps } from '../../../src/resolvers/Query/planets';
 import { MockProxy, mock } from 'jest-mock-extended';
-import { Context } from '../../../context/db';
+import { Context } from '../../../src/context/db';
 
 describe('Query-Planets', () => {
   describe('Suitable-Planets', () => {
