@@ -9,16 +9,13 @@ const typeDefs = gql`
   }
 
   input installStation {
-    namePlanet: String!
-    nameStation: String!
-    mass: Float
+    "The name of the planet that you want to install station"
+    name: String!
   }
 
   type Station {
     id: Int
-    namePlanet: String!
-    nameStation: String!
-    mass: Float
+    name: String!
   }
 
   type Mutation {
