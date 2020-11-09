@@ -12,16 +12,12 @@ describe('Mutation-Station', () => {
   });
   it('should be able to create a new station', async () => {
     const data = {
-      nameStation: 'station',
-      namePlanet: '01',
-      mass: 60,
+      name: '01',
     };
 
     mockCtx.db.station.create.mockResolvedValue({
       id: 5,
-      name_station: data.nameStation,
-      name_planet: data.namePlanet,
-      mass: data.mass,
+      name: data.name,
     });
 
     const response = await station.installStation(null, { data }, ctx);

@@ -2,9 +2,7 @@ import { Context } from '../../context/db';
 
 type DataProps = {
   data: {
-    nameStation: string;
-    namePlanet: string;
-    mass: number;
+    name: string;
   };
 };
 
@@ -14,19 +12,11 @@ export default {
     try {
       const response = await db.station.create({
         data: {
-          name_station: data.nameStation,
-          name_planet: data.namePlanet,
-          mass: data.mass,
+          name: data.name,
         },
       });
 
-      const result = {
-        id: response.id,
-        namePlanet: response.name_planet,
-        nameStation: response.name_station,
-        mass: response.mass,
-      };
-      return result;
+      return response;
     } catch (error) {
       throw new Error('This planet already been registered, try other planet.');
     }
