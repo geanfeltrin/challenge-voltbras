@@ -6,13 +6,12 @@ datasource db {
   url = "***"
 }
 
+
 generator client {
   provider = "prisma-client-js"
 }
 
 model Station {
   id Int @id @default(autoincrement())
-  name_station String
-  name_planet String @unique
-  mass Float
+  name String @unique
 }

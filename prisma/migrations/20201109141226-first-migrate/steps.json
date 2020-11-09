@@ -73,14 +73,7 @@
     {
       "tag": "CreateField",
       "model": "Station",
-      "field": "name_station",
-      "type": "String",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Station",
-      "field": "name_planet",
+      "field": "name",
       "type": "String",
       "arity": "Required"
     },
@@ -90,17 +83,10 @@
         "path": {
           "tag": "Field",
           "model": "Station",
-          "field": "name_planet"
+          "field": "name"
         },
         "directive": "unique"
       }
-    },
-    {
-      "tag": "CreateField",
-      "model": "Station",
-      "field": "mass",
-      "type": "Float",
-      "arity": "Required"
     }
   ]
 }
