@@ -1,5 +1,5 @@
 import station from '../../../resolvers/Mutation/station';
-import { createMockContext, MockContext } from '../../mockContext';
+import { createMockContext, MockContext } from '../../mocks/mockContext';
 import { Context } from '../../../context/db';
 
 describe('Mutation-Station', () => {

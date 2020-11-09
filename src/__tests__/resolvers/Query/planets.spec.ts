@@ -1,5 +1,5 @@
 import planets from '../../../resolvers/Query/planets';
-import { createMockContext, MockContext } from '../../mockContext';
+import { createMockContext, MockContext } from '../../mocks/mockContext';
 
 import { response } from '../../mocks/mockDataPlanetAPI';
 import PlanetAPI from '../../../api/planetApi';
