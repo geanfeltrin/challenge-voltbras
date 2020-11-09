@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node dist/server",
     "clean": "rm -rf dist",
-    "build": "npm -s run generate && tsc --skipLibCheck",
+    "build": "npm -s run generate && tsc",
     "create:db": "prisma migrate save --create-db --experimental",
     "migrate:save": "prisma migrate save --experimental",
     "migrate:up": "prisma migrate up --experimental",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "@prisma/cli": "^2.10.2",
     "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.7",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
     "dotenv-cli": "^4.0.0",
