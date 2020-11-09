@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import { Context } from '../../context/db';
 
 type DataProps = {
@@ -8,10 +7,6 @@ type DataProps = {
     mass: number;
   };
 };
-
-interface ctxProps {
-  db: Context;
-}
 
 export default {
   installStation: async (_: unknown, { data }: DataProps, ctx: Context) => {
