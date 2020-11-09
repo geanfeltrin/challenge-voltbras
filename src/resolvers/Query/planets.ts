@@ -1,27 +1,30 @@
-import { PrismaClient } from '@prisma/client';
+import { Context } from '../../context/db';
+import PlanetAPI from '../../api/planetApi';
 
 type argsProps = { page: number };
 
-interface ContextProps {
-  dataSources: any;
+export interface ContextProps extends Context {
+  dataSources: {
+    planetAPI: PlanetAPI;
+  };
 }
 
-const prisma = new PrismaClient();
-
 export default {
-  suitablePlanets: async (_: unknown, args: argsProps, ctx: ContextProps) => {
+  suitablePlanets: async (
+    _: unknown,
+    { page }: argsProps,
+    { dataSources, db }: ContextProps,
+  ) => {
     let data = [];
     const arrayPage = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const { page } = args;
+
     try {
       if (page) {
-        const dataWithPage = await ctx.dataSources.planetAPI.getPlanets(page);
+        const dataWithPage = await dataSources.planetAPI.getPlanets(page);
         data.push(...dataWithPage.results);
       } else {
         const promises = arrayPage.flatMap(async item => {
-          const dataWithoutPage = await ctx.dataSources.planetAPI.getPlanets(
-            item,
-          );
+          const dataWithoutPage = await dataSources.planetAPI.getPlanets(item);
           return dataWithoutPage;
         });
         const dataSource = await Promise.all(promises);
@@ -36,18 +39,28 @@ export default {
           hasStation: false,
         }));
 
-      const dataStation = await prisma.station.findMany();
+      const dataStation = await db.station.findMany();
 
       if (dataStation) {
-        for (let stations of dataStation) {
+        const formatDataStation = dataStation.map(value => ({
+          name: value.name_planet,
+          mass: value.mass,
+          hasStation: true,
+        }));
+
+        for (let station of formatDataStation) {
           for (let isPossibleToInstallStation of filterIsPossibleToInstallStation) {
-            if (stations.name_planet === isPossibleToInstallStation.name) {
+            if (station.name === isPossibleToInstallStation.name) {
               isPossibleToInstallStation.hasStation = true;
             }
           }
         }
 
-        const formatHasStation = [...filterIsPossibleToInstallStation];
+        const formatHasStation = Object.assign(
+          filterIsPossibleToInstallStation,
+          formatDataStation,
+        );
+
         const result = formatHasStation.sort(
           (a, b) => Number(b.hasStation) - Number(a.hasStation),
         );
@@ -57,7 +70,7 @@ export default {
         return filterIsPossibleToInstallStation;
       }
     } catch (error) {
-      console.log(error);
+      throw new Error('Could not possible to find suitable planets.');
     }
   },
 };
