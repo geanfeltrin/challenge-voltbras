@@ -43,7 +43,12 @@ export default {
       const dataStation = await db.station.findMany();
 
       if (dataStation.length >= 1) {
-        for (let station of dataStation) {
+        const formatDataStation = dataStation.map(value => ({
+          ...value,
+          hasStation: true,
+        }));
+
+        for (let station of formatDataStation) {
           for (let isPossibleToInstallStation of filterIsPossibleToInstallStation) {
             if (station.name === isPossibleToInstallStation.name) {
               isPossibleToInstallStation.hasStation = true;
@@ -53,7 +58,7 @@ export default {
 
         const formatHasStation = [
           ...filterIsPossibleToInstallStation,
-          ...dataStation,
+          ...formatDataStation,
         ];
 
         const organizeElements = sortElements(
@@ -62,9 +67,10 @@ export default {
           'asc',
         );
 
-        const result = removeDuplicatesArrayOfObj(organizeElements, 'name');
-
-        return result;
+        if (organizeElements) {
+          const result = removeDuplicatesArrayOfObj(organizeElements, 'name');
+          return result;
+        }
       } else {
         return filterIsPossibleToInstallStation;
       }
