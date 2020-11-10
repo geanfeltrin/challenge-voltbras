@@ -56,34 +56,22 @@ $ cd challenge-voltbras
 
 ```
 
-## Rodando com docker
-
-```bash
-
-# Crie um arquivo .env na raiz do projeto igual ao .env.example para configurar sua conexão ao banco.
-# No arquivo .env.example tera 2 variaveis database_url descomente a referente ao docker.
-# será igual a essa "DATABASE_URL=postgresql://USERNAME:PASSWORD@postgres:5432/challenge_voltbras?schema=public&sslmode=prefer", você deve alterar o username e password colocando igual a configuração do banco de dados.
-$ touch .env
-
-# Após configurar o arquivo .env execute o comando
-$ yarn docker:build
-
-# Agurde o docker rodar o build, esse processo leva um tempo.
-# Em seguida, execute o comando para rodar as migrations
-$ yarn docker:migrate
-
-# A aplicação será aberta na porta:4000 - acesse http://localhost:4000
-
-```
-
 ## Rodando de forma comum
 
 ```bash
-
-# Crie um arquivo .env na raiz do projeto igual ao .env.example para configurar sua conexão ao banco.
-# No arquivo .env.example tera 2 variaveis database_url descomente a referente ao localhost.
-# será igual a essa "DATABASE_URL=postgresql://USERNAME:PASSWORD@localhost:PORT/challenge_voltbras?schema=public&   sslmode=prefer", você deve alterar o USERNAME, PASSWORD e a PORT colocando igual a configuração do seu banco de dados.
+# Crie um arquivo .env na raiz do projeto
+# Linux ou MAC:
 $ touch .env
+# Windows:
+$ echo > .env
+# copie os dados do arquivo .env.example e cole no .env
+# preencha as informações da sua conexão com o banco de dados
+# você deve alterar o POSTGRESQL_USER e POSTGRESQL_PASSWORD e POSTGRESQL_PORT
+# colocando igual a configuração do banco de dados.
+# No arquivo .env.example tera 2 variaveis database_url descomente a referente ao localhost.
+# será igual a essa:
+# "DATABASE_URL=postgresql://POSTGRESQL_USER:POSTGRESQL_PASSWORD@localhost:POSTGRESQL_PORT/challenge_voltbras?schema=public&sslmode=prefer".
+
 
 # Apos configurar o arquivo .env instale as dependências
 $ yarn ou npm run install
@@ -96,6 +84,35 @@ $ yarn migrate:up ou npm run migrate:up
 
 # Feito tudo isso inicie a aplicação
 $ yarn dev
+
+# A aplicação será aberta na porta:4000 - acesse http://localhost:4000
+
+```
+
+## Rodando com docker
+
+```bash
+
+# Crie um arquivo .env na raiz do projeto
+# Linux ou MAC:
+$ touch .env
+# Windows:
+$ echo > .env
+# copie os dados do arquivo .env.example e cole no .env
+# preencha as informações da sua conexão com o banco de dados
+# você deve alterar o POSTGRESQL_USER e POSTGRESQL_PASSWORD e POSTGRESQL_PORT
+# colocando igual a configuração do banco de dados.
+# No arquivo .env.example tera 2 variaveis database_url descomente a referente ao docker.
+# será igual a essa:
+# "DATABASE_URL=postgresql://POSTGRESQL_USER:POSTGRESQL_PASSWORD@postgres:POSTGRESQL_PORT/challenge_voltbras?schema=public&sslmode=prefer".
+
+# Após configurar o arquivo .env execute o comando
+$ yarn docker:build
+
+# Agurde o docker rodar o build, esse processo leva um tempo.
+
+# Em seguida, execute o comando para rodar as migrations
+$ yarn docker:migrate
 
 # A aplicação será aberta na porta:4000 - acesse http://localhost:4000
 
