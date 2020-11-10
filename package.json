@@ -17,7 +17,11 @@
     "generate:prisma": "prisma generate",
     "dev": "ts-node-dev --inspect --ignore-watch node_modules src/server.ts",
     "test": "dotenv -e .env.test -- jest",
-    "prisma": "dotenv -- prisma"
+    "prisma": "dotenv -- prisma",
+    "docker:migrate": "docker exec -it prisma prisma2 migrate up --experimental",
+    "docker:build": "docker-compose up -d --build",
+    "docker:stop": "docker-compose down",
+    "docker:start": "docker-compose up"
   },
   "dependencies": {
     "@prisma/client": "^2.10.2",

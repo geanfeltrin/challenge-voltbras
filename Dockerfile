@@ -7,6 +7,9 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma/
 
+ARG DATABASE_URL
+ENV DATABASE_URL "$DATABASE_URL"
+
 # Install app dependencies
 RUN npm install
 # Generate prisma client, leave out if generating in `postinstall` script
