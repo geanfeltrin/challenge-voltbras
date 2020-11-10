@@ -13,5 +13,6 @@ module.exports = {
   coverageReporters: [
     'text-summary',
     "lcov"
-  ]
+  ],
+  coverageProvider: "babel",
 }
