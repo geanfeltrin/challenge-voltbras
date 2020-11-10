@@ -1,4 +1,4 @@
-import { removeDuplicatesArrayOfObj } from '../../utils/removeDuplicates';
+import { removeDuplicatesArrayOfObj } from '../../src/utils/removeDuplicates';
 
 describe('RemoveDuplicates', () => {
   it('should be able to remove duplicates from array of objects.', () => {
@@ -14,7 +14,7 @@ describe('RemoveDuplicates', () => {
     expect(result).toHaveLength(2);
   });
 
-  it('should be able to return null if not have a obj key', () => {
+  it('should be able to return the same array if not have a obj key', () => {
     const data = [
       { name: 'teste01', value: 10 },
       { name: 'teste01', value: 10 },
@@ -23,7 +23,7 @@ describe('RemoveDuplicates', () => {
     ];
     const result = removeDuplicatesArrayOfObj(data, 'test');
 
-    expect(result).toEqual(null);
+    expect(result).toEqual(data);
   });
 
   it('should be able to return array if not have something duplicate values', () => {
