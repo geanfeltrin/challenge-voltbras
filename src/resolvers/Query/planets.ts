@@ -22,14 +22,14 @@ export default {
     try {
       if (page) {
         const dataWithPage = await dataSources.planetAPI.getPlanets(page);
+
         data.push(...dataWithPage.results);
       } else {
-        const promises = arrayPage.flatMap(async item => {
-          const dataWithoutPage = await dataSources.planetAPI.getPlanets(item);
-          return dataWithoutPage;
-        });
-        const dataSource = await Promise.all(promises);
-        data.push(...dataSource.flatMap(value => value.results));
+        const dataWithoutPage = await dataSources.planetAPI.getPlanetsManyPages(
+          arrayPage,
+        );
+
+        data.push(...dataWithoutPage.flatMap(value => value.results));
       }
 
       const filterIsPossibleToInstallStation = data
