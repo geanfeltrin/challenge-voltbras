@@ -18,7 +18,9 @@ export default {
 
       return response;
     } catch (error) {
-      throw new Error('This planet already been registered, try other planet.');
+      throw new Error(
+        'Could not possible to install station, the name must be unique.',
+      );
     }
   },
 };
