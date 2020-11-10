@@ -47,6 +47,26 @@ describe('Query-Planets', () => {
       expect(filter).toHaveLength(0);
     });
 
+    it('should be able to return all suitable planets if the DB not have values', async () => {
+      mockPlanetApi.getPlanets.calledWith(1).mockResolvedValue(response);
+
+      mockCtx.db.station.findMany.mockResolvedValue([]);
+
+      const { db } = ctx;
+      const context: ContextProps = {
+        dataSources: {
+          planetAPI,
+        },
+        db,
+      };
+
+      const result = await planets.suitablePlanets(null, { page: 1 }, context);
+
+      const filter = result.filter(item => item.mass <= 25);
+
+      expect(result.length).toBeGreaterThan(1);
+      expect(filter).toHaveLength(0);
+    });
     it('should be able to return a valid result', async () => {
       mockPlanetApi.getPlanets.calledWith(1).mockResolvedValue(response);
 

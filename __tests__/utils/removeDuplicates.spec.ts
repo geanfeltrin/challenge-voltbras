@@ -38,4 +38,9 @@ describe('RemoveDuplicates', () => {
 
     expect(result).toHaveLength(4);
   });
+  it('should be able to return empty array if length < 1', () => {
+    const result = removeDuplicatesArrayOfObj([], 'value');
+
+    expect(result).toEqual([]);
+  });
 });
