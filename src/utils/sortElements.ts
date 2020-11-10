@@ -7,7 +7,7 @@ export function sortElements(
     return [];
   }
   if (!(key in arr[0])) {
-    return null;
+    return arr;
   }
 
   if (orderBy === 'asc') {

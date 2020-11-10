@@ -3,7 +3,7 @@ export function removeDuplicatesArrayOfObj(data: Array<any>, key: string) {
     return [];
   }
   if (!(key in data[0])) {
-    return null;
+    return data;
   }
   return data.filter((item, index, arr) => {
     const arrayToCheck = arr.map(item => item[key]);
