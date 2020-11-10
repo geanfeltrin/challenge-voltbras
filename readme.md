@@ -72,8 +72,7 @@ $ echo > .env
 # será igual a essa:
 # "DATABASE_URL=postgresql://POSTGRESQL_USER:POSTGRESQL_PASSWORD@localhost:POSTGRESQL_PORT/challenge_voltbras?schema=public&sslmode=prefer".
 
-
-# Apos configurar o arquivo .env instale as dependências
+# Após configurar o arquivo .env instale as dependências
 $ yarn ou npm run install
 
 # Caso você não tenha criado um banco execute o comando
@@ -109,7 +108,7 @@ $ echo > .env
 # Após configurar o arquivo .env execute o comando
 $ yarn docker:build
 
-# Agurde o docker rodar o build, esse processo leva um tempo.
+# Aguarde o docker rodar o build, esse processo leva um tempo.
 
 # Em seguida, execute o comando para rodar as migrations
 $ yarn docker:migrate
