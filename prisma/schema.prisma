@@ -12,5 +12,5 @@ generator client {
 
 model Station {
   id   Int    @id @default(autoincrement())
-  name String @unique // planetName seria melhor talvez?
+  planetName String @unique // planetName seria melhor talvez?
 }
