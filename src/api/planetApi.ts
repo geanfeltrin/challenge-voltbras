@@ -19,11 +19,11 @@ export default class PlanetAPI extends RESTDataSource {
     try {
       // show de bola! massa ter usado  flatmap
       // só não fez sentido usar async await, tira o sentido do promise.all ali em baixo
-      const promises = arrayPage.flatMap(async (item: number) => {
+      const promises = arrayPage.flatMap((item: number) => {
         return this.getPlanets(item);
       });
 
-      const response = await Promise.all(promises);
+      const response = Promise.all(promises);
 
       return response;
     } catch (error) {
