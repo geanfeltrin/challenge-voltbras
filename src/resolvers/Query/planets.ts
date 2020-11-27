@@ -11,13 +11,17 @@ export interface ContextProps extends Context {
 }
 
 export default {
+  // essa função ficou legal, só não curti muito o fato de ela estar fazendo MUITA caisa
+  // dava pra ter separado ela em algumas funções. e essa chamada aqui ser responsável apenas por chamar essas funções
+  // ex: fetchPlanets, filterSuitablePlanets
   suitablePlanets: async (
     _: unknown,
     { page }: argsProps,
     { dataSources, db }: ContextProps,
   ) => {
-    let data = [];
-    const arrayPage = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const data = [];
+    const pages = 10;
+    const arrayPage = [...Array(pages).keys()].map(n => n + 1); // essa é uma forma daora de fazer um range em javascript :)
 
     try {
       if (page) {
@@ -32,35 +36,54 @@ export default {
         data.push(...dataWithoutPage.flatMap(value => value.results));
       }
 
+      // esse não ficou muito claro, parece mais um nome de uma função que vai filtrar os dados,
+      // porém ela é o resultado dos dados filtrados
       const filterIsPossibleToInstallStation = data
         .filter(item => item.mass?.value > 25)
         .map(element => ({
           name: element.name,
           mass: element.mass.value,
-          hasStation: false,
+          hasStation: false, // esse hasStation não precisava estar aqui
         }));
 
       const dataStation = await db.station.findMany();
 
       if (dataStation.length >= 1) {
-        const formatDataStation = dataStation.map(value => ({
-          ...value,
-          hasStation: true,
-        }));
+        // acho que teriam algumas formas de fazer esse tratamento sem esses loops
+        // mas mesmo seguindo sua lógica acredito que da pra melhorar um pouquinho
 
-        for (let station of formatDataStation) {
-          for (let isPossibleToInstallStation of filterIsPossibleToInstallStation) {
-            if (station.name === isPossibleToInstallStation.name) {
-              isPossibleToInstallStation.hasStation = true;
-            }
-          }
-        }
+        // novamente nome não muito claro
+        // const formatDataStation = dataStation.map(value => ({
+        //   ...value,
+        //   // hasStation: true,
+        // }));
 
-        const formatHasStation = [
-          ...filterIsPossibleToInstallStation,
-          ...formatDataStation,
-        ];
+        // for (let station of formatDataStation) {
+        //   for (let isPossibleToInstallStation of filterIsPossibleToInstallStation) {
+        //     if (station.name === isPossibleToInstallStation.name) {
+        //       isPossibleToInstallStation.hasStation = true;
+        //     }
+        //   }
+        // }
 
+        // duas sugestões abaixo:
+        const planetsWithStationTracking = filterIsPossibleToInstallStation.map(
+          planet => ({
+            ...planet,
+            hasStation: !!dataStation.find(
+              station => station.name === planet.name,
+            ),
+          }),
+        );
+
+        const planetsWithStationTracking = filterIsPossibleToInstallStation.map(
+          async planet => ({
+            ...planet,
+            hasStation: !!(await db.station.findOne({
+              where: { name: planet.name },
+            })),
+          }),
+        );
         const organizeElements = sortElements(
           formatHasStation,
           'hasStation',
@@ -68,6 +91,7 @@ export default {
         );
 
         if (organizeElements) {
+          // precisava?
           const result = removeDuplicatesArrayOfObj(organizeElements, 'name');
           return result;
         }
@@ -75,6 +99,8 @@ export default {
         return filterIsPossibleToInstallStation;
       }
     } catch (error) {
+      // não sei se curti muito esse catch, talvez fosse mais interessante deixar o erro raw mesmo
+      // e caso queira tratar pra ser uma mensagem bonitinha, cobrir em cada função que pode dar throw
       throw new Error('Could not possible to find suitable planets.');
     }
   },

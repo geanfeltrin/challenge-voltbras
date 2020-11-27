@@ -1,5 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
+// Ficou massa!
 export default class PlanetAPI extends RESTDataSource {
   constructor() {
     super();
@@ -16,9 +17,10 @@ export default class PlanetAPI extends RESTDataSource {
   }
   async getPlanetsManyPages(arrayPage: Array<number>) {
     try {
+      // show de bola! massa ter usado  flatmap
+      // só não fez sentido usar async await, tira o sentido do promise.all ali em baixo
       const promises = arrayPage.flatMap(async (item: number) => {
-        const dataWithoutPage = await this.getPlanets(item);
-        return dataWithoutPage;
+        return this.getPlanets(item);
       });
 
       const response = await Promise.all(promises);

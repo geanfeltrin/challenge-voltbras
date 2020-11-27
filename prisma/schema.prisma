@@ -6,12 +6,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 generator client {
   provider = "prisma-client-js"
 }
 
 model Station {
-  id Int @id @default(autoincrement())
-  name String @unique
+  id   Int    @id @default(autoincrement())
+  name String @unique // planetName seria melhor talvez?
 }

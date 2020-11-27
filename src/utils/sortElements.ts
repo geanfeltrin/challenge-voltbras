@@ -1,3 +1,5 @@
+// essa função ficou bem massa, boa!
+// só dava pra melhorar a tipagem aqui com generics e tal, mas ta realmente bem legal!
 export function sortElements(
   arr: Array<any>,
   key: string,

@@ -7,20 +7,14 @@ import { ContextProps } from '../../../src/resolvers/Query/planets';
 import { MockProxy, mock } from 'jest-mock-extended';
 import { Context } from '../../../src/context/db';
 
+const mockCtx = createMockContext();
+const ctx = (mockCtx as unknown) as Context;
+const mockPlanetApi = mock<PlanetAPI>();
+const planetAPI = (mockPlanetApi as unknown) as PlanetAPI;
+
+// Muito massa você ter escrito esses testes, parabéns!
 describe('Query-Planets', () => {
   describe('Suitable-Planets', () => {
-    let mockCtx: MockContext;
-    let ctx: Context;
-    let mockPlanetApi: MockProxy<PlanetAPI>;
-    let planetAPI: PlanetAPI;
-
-    beforeEach(() => {
-      mockCtx = createMockContext();
-      ctx = (mockCtx as unknown) as Context;
-      mockPlanetApi = mock<PlanetAPI>();
-      planetAPI = (mockPlanetApi as unknown) as PlanetAPI;
-    });
-
     it('should be able to return all suitable planets with mass > 25', async () => {
       mockPlanetApi.getPlanets.calledWith(1).mockResolvedValue(response);
 

@@ -1,3 +1,4 @@
+// não entendi se precisava dessa função, tipo, talvez over-engineering?
 export function removeDuplicatesArrayOfObj(data: Array<any>, key: string) {
   if (data.length < 1) {
     return [];
