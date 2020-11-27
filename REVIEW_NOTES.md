@@ -30,3 +30,19 @@ Mas valeu a intenção de usar Typescript, era um extra e você cumpriu, show de
 Tive uns probleminhas pra rodar o projeto com o docker, acho que algumas coisas poderiam estar com uns valores default mais settados seilá. Mas consegui rodar tranquilo.
 
 Acho que em alguns pontos você pecou em separar as responsabilidades e em manter as coisas simples, dai entra um pouco dos principios SOLID e KISS mas, de verdade, seu projeto ficou muito bom!
+
+
+---
+
+### Comentario
+
+Muito obrigado pelo feedback Vinícius, achei sensacional você ter analisado o código. 
+E em minha defesa kkkkk, realmente comiti alguns erros de SOLID e KISS e depois que enviei, já quis reestruturar esse projeto, tentar isolar as responsabilidades e por conta dessa "forma que eu fiz" tive algumas dificuldades nos teste que eram para ser bem simples.
+Na semana que estava construindo esse código estive com muitas atividades extras, acabou faltando um pouco de organização...
+Mas eu fiquei muito feliz por essa PR e de verdade contruíbuio demais para meu desenvolvimento.
+
+Ah, o code generator eu tinha visto essa ferramentas e acabei esquencendo de utilizar kkkkkkk
+
+E assim que tiver tempo vou refatorar esse código.
+
+Mas obrigado de ❤
